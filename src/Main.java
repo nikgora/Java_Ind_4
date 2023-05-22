@@ -56,11 +56,11 @@ public class Main {
             e.printStackTrace();
         }
         t4.start();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 //        t5.start();
     }
 }
