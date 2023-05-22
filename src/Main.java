@@ -35,6 +35,10 @@ public class Main {
         Thread t2 = new Thread(new AccommodationRequest(hotel, "Bob", 7000));
         Thread t3 = new Thread(new AccommodationRequest(hotel, "Charlie", 4000));
         Thread t4 = new Thread(new AccommodationRequest(hotel, "Sofi", 6000));
+        t1.setPriority(4);
+        t2.setPriority(3);
+        t3.setPriority(2);
+        t4.setPriority(1);
         t1.start();
         try {
             Thread.sleep(1000);
