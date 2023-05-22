@@ -31,10 +31,11 @@
 public class Main {
     public static void main(String[] args) {
         Hotel hotel = new Hotel(2);
-        Thread t1 = new Thread(new AccommodationRequest(hotel, "Alice", 5000));
-        Thread t2 = new Thread(new AccommodationRequest(hotel, "Bob", 7000));
+        Thread t1 = new Thread(new AccommodationRequest(hotel, "Alice", 10000));
+        Thread t2 = new Thread(new AccommodationRequest(hotel, "Bob", 12000));
         Thread t3 = new Thread(new AccommodationRequest(hotel, "Charlie", 4000));
         Thread t4 = new Thread(new AccommodationRequest(hotel, "Sofi", 6000));
+        //Thread t5 = new Thread(new AccommodationRequest(hotel, "Max", 1000));
 
         t1.start();
         try {
@@ -55,6 +56,11 @@ public class Main {
             e.printStackTrace();
         }
         t4.start();
-
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+//        t5.start();
     }
 }
