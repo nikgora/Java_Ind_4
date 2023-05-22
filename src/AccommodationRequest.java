@@ -22,7 +22,7 @@ class AccommodationRequest implements Runnable {
             long firstAvaibleTime = endTimes.get(0);
             endTimes.set(0,firstAvaibleTime+stayDuration);
             System.out.println("Guest " + guestName + " is waiting for available slots.\n"+"Wait time: "+ (firstAvaibleTime-System.currentTimeMillis()));
-            //якщо немає місць, то поток зупиняється на 1000 секунд, якщо є місце то заcеляється
+            //якщо немає місць, то поток зупиняється на 1000 мілісекунд, якщо є місце то заcеляється
             while (!hotel.checkIn(guestName)) {
                 System.out.println("Wait time: "+ (firstAvaibleTime-System.currentTimeMillis()));
                 try {
