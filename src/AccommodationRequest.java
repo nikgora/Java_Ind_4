@@ -1,13 +1,15 @@
+import java.util.*;
+
 //клас заявки
 class AccommodationRequest implements Runnable {
 
-    private final Hotel hotel;
+    private static Hotel hotel;
     private final String guestName;
     private final int stayDuration;
 
-    private static long firstAvaibleTime =Long.MAX_VALUE;
+    private static ArrayList<Long> endTimes =new ArrayList<>();
     public AccommodationRequest(Hotel hotel, String guestName, int stayDuration) {
-        this.hotel = hotel;
+        AccommodationRequest.hotel = hotel;
         this.guestName = guestName;
         this.stayDuration = stayDuration;
     }
@@ -16,6 +18,9 @@ class AccommodationRequest implements Runnable {
     public void run() {
         //якщо немає місць
         if (!hotel.checkIn(guestName)) {
+            Collections.sort(endTimes);
+            long firstAvaibleTime = endTimes.get(0);
+            endTimes.set(0,firstAvaibleTime+stayDuration);
             System.out.println("Guest " + guestName + " is waiting for available slots.\n"+"Wait time: "+ (firstAvaibleTime-System.currentTimeMillis()));
             //якщо немає місць, то поток зупиняється на 1000 секунд, якщо є місце то заcеляється
             while (!hotel.checkIn(guestName)) {
@@ -29,7 +34,7 @@ class AccommodationRequest implements Runnable {
         }
         //після заселення клієнта потік зупиняється на заданий період часу, переданий у параметрі stayDuration
         try {
-            firstAvaibleTime = Math.min(firstAvaibleTime,System.currentTimeMillis()+stayDuration);
+            endTimes.add(System.currentTimeMillis()+stayDuration);
             Thread.sleep(stayDuration);
         } catch (InterruptedException e) {
             e.printStackTrace();

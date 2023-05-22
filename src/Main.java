@@ -48,7 +48,11 @@ public class Main {
             e.printStackTrace();
         }
         t3.start();
-
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         t4.start();
 
     }

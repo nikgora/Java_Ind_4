@@ -29,6 +29,18 @@ public class Hotel {
     public synchronized boolean findGuest(String guestName) {
         return guests.contains(guestName);
     }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public ArrayList<String> getGuests() {
+        return guests;
+    }
+
+    public void setGuests(ArrayList<String> guests) {
+        this.guests = guests;
+    }
 }
 
 
